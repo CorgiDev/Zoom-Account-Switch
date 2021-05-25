@@ -24,6 +24,6 @@ This section lists resources I referenced while working on this project.
 - [Zoom Developer Forum - Login from the command line](https://devforum.zoom.us/t/log-in-from-command-line/7804)
 - [Medium - Automating Zoom with Python](https://medium.com/asecuritysite-when-bob-met-alice/automating-zoom-with-python-b333ff81c69f)
 - [Dev.to - Automating Zoom](https://dev.to/sunilaleti/automating-zoom-3e64)
-- []()
-- []()
+- [Microsoft Docs - Quickstart: Azure Key Vault secret client library for Python](https://docs.microsoft.com/en-us/azure/key-vault/secrets/quick-create-python)
+- [Python Software Foundation - azure-keyvault-secrets](https://pypi.org/project/azure-keyvault-secrets/)
 - []()

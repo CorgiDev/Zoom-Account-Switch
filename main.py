@@ -5,8 +5,14 @@ import time
 from datetime import datetime
 
 import settings
+#import zoomFunctions as zf
+
+# Open Zoom
+os.startfile(settings.startfile)
+time.sleep(3)
 
 # Check if already logged in
+#zf.confirmLogin
 
 # If logged in, 
     # List what account you are logged in with
