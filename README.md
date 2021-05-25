@@ -26,4 +26,8 @@ This section lists resources I referenced while working on this project.
 - [Dev.to - Automating Zoom](https://dev.to/sunilaleti/automating-zoom-3e64)
 - [Microsoft Docs - Quickstart: Azure Key Vault secret client library for Python](https://docs.microsoft.com/en-us/azure/key-vault/secrets/quick-create-python)
 - [Python Software Foundation - azure-keyvault-secrets](https://pypi.org/project/azure-keyvault-secrets/)
+- [PYnative - Python Parse multiple JSON objects from file](https://pynative.com/python-parse-multiple-json-objects-from-file/)
+- [W3Schools - Python User Input](https://www.w3schools.com/python/python_user_input.asp)
+- []()
+- []()
 - []()
