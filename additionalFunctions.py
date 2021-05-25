@@ -1,12 +1,70 @@
-import os
-import pandas as pd
 import json
+import sys
 
-#Check if user logged in
+# Check if user logged in
+def ConfirmLogin ():
+    loginStatus = ""
+    loopContinue = 1
 
-#Select Login Account from List
+    while loopContinue == 1:
+        # Ask if user is logged in
+        print ("Are you currently logged in?")
+        print ("1: Yes")
+        print ("2: No")
+        print ("3: Exit Program")
+        choice = input ("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
+        
+        switcher = {
+            1: "Yes",
+            2: "No",
+            3: "Exit"
+        }
+        
+        try:
+            val = int(choice) # Just checks to make sure the user entered a number
+            if choice == 3:
+                sys.exit ()
+            else:
+                loginStatus = switcher.get (choice, "Invalid entry detected.")
+        except ValueError:
+                print("You entered something other than a number. Please try again.")
+
+    return loginStatus
+
+def stayLoggedInCheck ():
+    stayLoggedIn = ""
+    loopContinue = 1
+
+    while loopContinue == 1:
+        # Ask if user is logged in
+        print ("Do you wish to remain logged in to the current account?")
+        print ("1: Yes")
+        print ("2: No")
+        print ("3: Exit Program")
+        choice = input ("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
+
+        switcher = {
+            1: "Yes",
+            2: "No",
+            3: "Exit"
+        }
+
+        try:
+            val = int(choice) # Just checks to make sure the user entered a number
+            if choice == 1:
+                print ("Logged into account you need already. This app will now close.")
+                sys.exit ()
+            elif choice == 3:
+                sys.exit ()
+            else:
+                stayLoggedIn = switcher.get (choice, "Invalid entry detected.")
+        except ValueError:
+                print ("You entered something other than a valid number. Please try again.")
+
+    return stayLoggedIn
+
+# Select Login Account from List
 def selectAccount():
-    secretName = ""
     accountList = []
     
     print("Started reading JSON file containing account list")
@@ -15,14 +73,26 @@ def selectAccount():
             accountDict = json.loads(jsonObj)
             accountList.append(accountDict)
 
-    print("Printing each JSON Decoded Object")
+    print("Printing list of accounts to pick from:")
     for account in accountList:
         print(account["id"] + " - " + account["AccountNickname"] + " - " + account["AccountEmail"])
-    
-    choice = raw_input("Type the Number that corresponds with the account you wish to login with and press enter:")
 
-    listItem = choice - 1
+    loopContinue = 1
 
-    secretName = account[listItem].SecretName
+    while loopContinue == 1:
+        choice = input("Type the Number that corresponds with the account you wish to login with and press enter:")
 
-    return secretName
+        try:
+            val = int(choice) # Just checks to make sure the user entered a number
+            
+            # Checks if choice is actually in the account list
+            if choice in accountList.values():
+                for account in accountList:
+                    if choice == account["id"]:
+                        return account
+                    elif choice != account["id"]:
+                        continue
+            else:
+                print('Your choice was not in the list. Please try again.')
+        except ValueError:
+            print("You entered something other than a number. Please try again.")
