@@ -14,7 +14,7 @@ t.sleep(3)
 # TODO: See if I can find a way later to auto check what account is logged in
 
 # Check if already logged in
-loginStatus = af.confirmLogin
+loginStatus = af.ConfirmLogin
 
 if loginStatus == "Yes":
     stayLoggedIn = af.stayLoggedInCheck
