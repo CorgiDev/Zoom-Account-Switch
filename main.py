@@ -1,68 +1,24 @@
 import os
- import pandas as pd
- import pyautogui
- import time
- from datetime import datetime
+import pandas as pd
+import pyautogui
+import time
+from datetime import datetime
 
+import settings
 
- def signIn(meeting_id,password):
+# Check if already logged in
 
-     #Open's Zoom Application from the specified location
-     os.startfile("")
-     time.sleep(3)
+# If logged in, 
+    # List what account you are logged in with
+    # Verify you wish to remain logged in
+    # If you do, close app.
+    # If you don't log out
 
-     #Click's join button
-     joinbtn=pyautogui.locateCenterOnScreen("")
-     pyautogui.moveTo(joinbtn)
-     pyautogui.click()
-     time.sleep(1)
+# If not logged in,
+    # List accounts available
+    # Select account you wish to login with
+    # Login
 
-     #Type the meeting id
-     meetingidbtn=pyautogui.locateCenterOnScreen("")
-     pyautogui.moveTo(meetingidbtn)
-     pyautogui.write(meeting_id)
-     time.sleep(2)
-
-     #To turn of video and audio
-     mediaBtn=pyautogui.locateAllOnScreen("")
-     for btn in mediaBtn:
-         pyautogui.moveTo(btn)
-         pyautogui.click()
-         time.sleep(1)
-
-     #To join
-     join=pyautogui.locateCenterOnScreen("")
-     pyautogui.moveTo(join)
-     pyautogui.click()
-     time.sleep(2)
-
-     #Enter's passcode to join meeting
-     passcode=pyautogui.locateCenterOnScreen("")
-     pyautogui.moveTo(passcode)
-     pyautogui.write(password)
-     time.sleep(1)
-
-     #Click's on join button
-     joinmeeting=pyautogui.locateCenterOnScreen("")
-     pyautogui.moveTo(joinmeeting)
-     pyautogui.click()
-     time.sleep(1)
-
- df = pd.read_excel('',index=False)
-
- while True:
-     #To get current time
-     now = datetime.now().strftime("%H:%M")
-     if now in str(df['Timings']):
-
-         mylist=df["Timings"]
-         mylist=[i.strftime("%H:%M") for i in mylist]
-         c= [i for i in range(len(mylist)) if mylist[i]==now]
-         row = df.loc[c] 
-         meeting_id = str(row.iloc[0,1])  
-         password= str(row.iloc[0,2])  
-         time.sleep(5)
-         signIn(meeting_id, password)
-         time.sleep(2)
-         print('signed in')
-         break
+# Login to a meeting
+    # Verify logged in
+    # Take in information needed to join meeting
