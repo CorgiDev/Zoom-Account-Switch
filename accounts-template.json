@@ -1,0 +1,16 @@
+{
+    "ZoomAccounts" : [
+        {
+            "id": 1,
+            "AccountNickname": "Work Account",
+            "AccountEmail": "<email>",
+            "SecretName": "<password name in keyvault>"
+        },
+        {
+            "id": 2,
+            "AccountNickname": "Personal Account",
+            "AccountEmail": "<email>",
+            "SecretName": "<password name in keyvault>"
+        }
+    ]
+}
