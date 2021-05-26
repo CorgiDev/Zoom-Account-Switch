@@ -8,7 +8,7 @@ from azure.identity import DefaultAzureCredential
 import secrets as sec
 
 def retrieveSecret(SecretName):
-    keyVaultName = os.environ[sec.keyVaultName]
+    keyVaultName = os.environ[sec.AZURE_KEYVAULT_NAME]
     KVUri = f"https://{keyVaultName}.vault.azure.net"
 
     credential = DefaultAzureCredential()

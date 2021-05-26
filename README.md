@@ -5,6 +5,8 @@ Application allowing the user to easily switch between Zoom accounts.
 
 - This script was written to work in Windows 10
   - It may be possible to get it to work on other OSs, but it will most likely require some reworking of the script.
+- You will need a Key Vault in Azure and will need to login to your Azure instance in Powershell to use this.
+  - You DO NOT have to login to Azure before running the script every time. Your system should maintain a connection for a time. However, if you run into issues, you may need to re-run the `az login` command to refresh your connection.
 
 ## Required Python Modules
 
@@ -34,7 +36,15 @@ From there you can:
 2. Type the command `az login`
 3. Login to your Azure instance where your Key Vault containing your Zoom credentials is located.
 
+### Alternate Method
+
+Alternatively, you can use the Powershell script named `AzureLogin.ps1`. It will install the needed modules and start the login process.
+
 ### Installing Powershell Modules
+
+Install Powershell modules with the following command:
+
+`Install-Module -Name <ModuleName> -Scope CurrentUser -Repository PSGallery -Force`
 
 ### Set Execution Policy
 
@@ -84,6 +94,10 @@ These pages are from Stack Overflow.
 - [Python: Return hash values from hash table regarding to a searching keyword](https://stackoverflow.com/questions/20072014/python-return-hash-values-from-hash-table-regarding-to-a-searching-keyword)
 - [How to check if string input is a number?](https://stackoverflow.com/questions/5424716/how-to-check-if-string-input-is-a-number)
 - [Pillow package is required but i already have the latest version](https://stackoverflow.com/questions/65318814/pillow-package-is-required-but-i-already-have-the-latest-version)
+
+### Youtube Videos
+
+- [Accessing Azure Key Vault with Python](https://www.youtube.com/watch?v=FI44MhwklSc)
 
 ### Miscellaeous Sources
 

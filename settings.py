@@ -4,12 +4,6 @@ import pyautogui
 startfile = "C:/Program Files (x86)/Zoom/bin/Zoom.exe"
 
 #Button Image Assets
-# joinbtn=pyautogui.locateCenterOnScreen("")
-# meetingidbtn=pyautogui.locateCenterOnScreen("")
-# mediaBtn=pyautogui.locateAllOnScreen("")
-# join=pyautogui.locateCenterOnScreen("")
-# passcode=pyautogui.locateCenterOnScreen("")
-# joinmeeting=pyautogui.locateCenterOnScreen("")
 signinEmailfield = pyautogui.locateCenterOnScreen("accountEmailField.PNG")
 signinPasswordfield = pyautogui.locateCenterOnScreen("accountPasswordField.PNG")
 signinBtn = pyautogui.locateCenterOnScreen("signinBtn.PNG")
