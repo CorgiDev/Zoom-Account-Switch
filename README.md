@@ -26,7 +26,8 @@ This does require that you have *pip* installed as well. For details on how to i
 
 ## Required Powershell Modules
 
-Because this script uses Azure Key Vault to grab your Zoom Credentials, you will need to have the `az` Powershell module installed to login to Azure via the command line. 
+Because this script uses Azure Key Vault to grab your Zoom Credentials, you will need to have the `az` Powershell module installed to login to Azure via the command line.
+
 From there you can:
 
 1. Open a Powershell window.
@@ -34,6 +35,12 @@ From there you can:
 3. Login to your Azure instance where your Key Vault containing your Zoom credentials is located.
 
 ### Installing Powershell Modules
+
+### Set Execution Policy
+
+Make sure you can run powershell scripts (it is disabled by default). Additional information on this can be found at: (http://technet.microsoft.com/en-us/library/ee176949.aspx)[http://technet.microsoft.com/en-us/library/ee176949.aspx]. Use the following command to set the policy appropriately.
+
+`Set-ExecutionPolicy RemoteSigned`
 
 ## Azure KeyVault
 

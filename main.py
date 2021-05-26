@@ -1,10 +1,14 @@
 import os
+import subprocess
 import time as t
 import sys
 
 import settings as s
 import additionalFunctions as af
 import zoomFunctions as zf
+
+# Login to your Azure subscription where Key Vault is located
+subprocess.Popen(['powershell.exe', 'AzureLogin.ps1'], stdout=sys.stdout)
 
 # Open Zoom
 os.startfile(s.startfile)
