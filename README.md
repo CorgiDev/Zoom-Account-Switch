@@ -52,6 +52,20 @@ Make sure you can run powershell scripts (it is disabled by default). Additional
 
 `Set-ExecutionPolicy RemoteSigned`
 
+### Set User Environment Variables
+
+To set the environment variables that the script pulls to connect to your Key Vault you have a few options:
+
+1. **Powershell** - `[Environment]::SetEnvironmentVariable("[variable name]","[variable value]","User")`
+2. **Command Prompt** - `setx [variable name] "[variable value]"`
+3. **Manual** - 
+  1. Open the *Environment Variables* option by searching for *Environment Variables* in the Windows 10 Start Menu. This should open the *System Properties* window on the *Advanced* tab.
+  2. Click the *Environment Variables* button.
+  3. Click the *New* button under the *User variables for <username>* section.
+  4. Enter a name and value for the variable. Make sure the name matches what is called for under the `config.py` file.
+  5. Click *OK* to confirm the variable.
+  6. Repeat until you have added all the variables you wish to add. Then close the *Environment Variables* window out.
+
 ## Azure KeyVault
 
 You will need to have your Zoom passwords stored in an Azure KeyVault for this to work. This is to help limit when your passwords are exposed at all.
@@ -107,3 +121,4 @@ These pages are from Stack Overflow.
 - [Python add to Dictionary](https://www.journaldev.com/23232/python-add-to-dictionary#:~:text=There%20is%20no%20explicitly%20defined,assignment%20operator%20with%20dictionary%20key.&text=Note%20that%20if%20the%20key,the%20value%20will%20be%20overwritten.)
 - [Tutorials Point - Python - Hash Table](https://www.tutorialspoint.com/python_data_structure/python_hash_table.htm)
 - [PYnative - Python Parse multiple JSON objects from file](https://pynative.com/python-parse-multiple-json-objects-from-file/)
+- [How to Set New User and System Environment Variables in Windows](https://www.tenforums.com/tutorials/121664-set-new-user-system-environment-variables-windows.html)
