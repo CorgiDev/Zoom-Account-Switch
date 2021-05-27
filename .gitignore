@@ -1,7 +1,5 @@
 # Special files I don't want to keep in version control
 secrets.py
-secrets.xlsx
-~$secrets.xlsx
 secrets.json
 accounts.json
 
