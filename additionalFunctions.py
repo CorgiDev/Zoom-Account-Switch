@@ -6,9 +6,8 @@ import sys
 ###########################################
 def ConfirmLogin():
     loginStatus = ""
-    loopContinue = ""
 
-    while loopContinue == "":
+    while True:
         # Ask if user is logged in
         print("Are you currently logged in?")
         print("1: Yes")
@@ -40,9 +39,8 @@ def ConfirmLogin():
 ###########################################
 def stayLoggedInCheck():
     stayLoggedIn = ""
-    loopContinue = 1
 
-    while loopContinue == 1:
+    while True:
         # Ask if user is logged in
         print("Do you wish to remain logged in to the current account?")
         print("1: Yes")
@@ -65,7 +63,7 @@ def stayLoggedInCheck():
             elif choice == "3":
                 sys.exit()
             else:
-                loopContinue == 0
+                break
         except ValueError:
                 print("You entered something other than a number. Please try again.")
 
@@ -78,7 +76,6 @@ def stayLoggedInCheck():
 def selectAccount():
     accountList = []
     secretNamePrefix = ""
-    loopContinue = 1
     
     print("Started reading account list")
     
@@ -92,7 +89,7 @@ def selectAccount():
         print(account["id"] + " - " + account["AccountNickname"] + " - " + account["AccountEmail"])
 
 
-    while loopContinue == 1:
+    while True:
         choice = input("Type the Number that corresponds with the account you wish to login with and press enter:")
 
         try:
@@ -102,13 +99,15 @@ def selectAccount():
             if val in accountList.values():
                 for account in accountList:
                     if choice == account["id"]:
-                        loopContinue = 0
+                        break
                     elif choice != account["id"]:
                         continue
             else:
                 print('Your choice was not in the list. Please try again.')
+                continue
         except ValueError:
             print("You entered something other than a number. Please try again.")
+            continue
     
     secretNamePrefix = account["SecretName"]
     return secretNamePrefix
