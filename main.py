@@ -3,32 +3,30 @@ import subprocess
 import time as t
 import sys
 
-import settings as s
+import config as conf
 import additionalFunctions as af
 import zoomFunctions as zf
 
-# Open Zoom
-os.startfile(s.startfile)
-t.sleep(3)
+zf.StartZoom()
 
 # TODO: See if I can find a way later to auto check if logged in
 # TODO: See if I can find a way later to auto check what account is logged in
 
 # Check if already logged in
-loginStatus = af.ConfirmLogin
+loginStatus = af.ConfirmLogin()
 
 if loginStatus == "Yes":
-    stayLoggedIn = af.stayLoggedInCheck
+    stayLoggedIn = af.stayLoggedInCheck()
     if stayLoggedIn == "Yes":
-        print ("Logged into account you need already. This app will now close.")
-        sys.exit ()
+        print("You're logged into the account you need already. This app will now close.")
+        sys.exit()
     elif stayLoggedIn == "No":
         # Logout of Zoom
         zf.signOut
         # Allow login to other account
-        accountInfo = af.selectAccount
-        zf.signIn (accountInfo)
+        secretNamePrefix = af.selectAccount()
+        zf.signIn(secretNamePrefix)
 elif loginStatus == "No":
-    accountInfo = af.selectAccount
-    zf.signInButton ()
-    zf.signIn (accountInfo)
+    secretNamePrefix = af.selectAccount()
+    zf.signInButton()
+    zf.signIn(secretNamePrefix)

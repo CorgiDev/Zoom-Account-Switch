@@ -2,64 +2,64 @@ import json
 import sys
 
 # Check if user logged in
-def ConfirmLogin ():
+def ConfirmLogin():
     loginStatus = ""
     loopContinue = 1
 
     while loopContinue == 1:
         # Ask if user is logged in
-        print ("Are you currently logged in?")
-        print ("1: Yes")
-        print ("2: No")
-        print ("3: Exit Program")
-        choice = input ("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
+        print("Are you currently logged in?")
+        print("1: Yes")
+        print("2: No")
+        print("3: Exit Program")
+        choice = input("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
         
         switcher = {
-            1: "Yes",
-            2: "No",
-            3: "Exit"
+            "1": "Yes",
+            "2": "No",
+            "3": "Exit"
         }
         
         try:
             val = int(choice) # Just checks to make sure the user entered a number
-            if choice == 3:
-                sys.exit ()
+            if choice == "3":
+                sys.exit()
             else:
-                loginStatus = switcher.get (choice, "Invalid entry detected.")
+                loginStatus = switcher.get(choice, "Invalid number entered.")
         except ValueError:
                 print("You entered something other than a number. Please try again.")
 
     return loginStatus
 
-def stayLoggedInCheck ():
+def stayLoggedInCheck():
     stayLoggedIn = ""
     loopContinue = 1
 
     while loopContinue == 1:
         # Ask if user is logged in
-        print ("Do you wish to remain logged in to the current account?")
-        print ("1: Yes")
-        print ("2: No")
-        print ("3: Exit Program")
-        choice = input ("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
+        print("Do you wish to remain logged in to the current account?")
+        print("1: Yes")
+        print("2: No")
+        print("3: Exit Program")
+        choice = input("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue. $")
 
         switcher = {
-            1: "Yes",
-            2: "No",
-            3: "Exit"
+            "1": "Yes",
+            "2": "No",
+            "3": "Exit"
         }
 
         try:
             val = int(choice) # Just checks to make sure the user entered a number
-            if choice == 1:
-                print ("Logged into account you need already. This app will now close.")
-                sys.exit ()
-            elif choice == 3:
-                sys.exit ()
+            if choice == "1":
+                print("Logged into account you need already. This app will now close.")
+                sys.exit()
+            elif choice == "3":
+                sys.exit()
             else:
-                stayLoggedIn = switcher.get (choice, "Invalid entry detected.")
+                stayLoggedIn = switcher.get(choice, "Invalid number entered.")
         except ValueError:
-                print ("You entered something other than a valid number. Please try again.")
+                print("You entered something other than a valid number. Please try again.")
 
     return stayLoggedIn
 
@@ -89,7 +89,8 @@ def selectAccount():
             if choice in accountList.values():
                 for account in accountList:
                     if choice == account["id"]:
-                        return account
+                        secretNamePrefix = account["SecretName"]
+                        return secretNamePrefix
                     elif choice != account["id"]:
                         continue
             else:

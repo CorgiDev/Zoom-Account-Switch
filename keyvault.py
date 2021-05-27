@@ -1,22 +1,27 @@
-import os
-import cmd
-import azure.keyvault.secrets
-import azure.identity
+from azure.identity import ClientSecretCredential
 from azure.keyvault.secrets import SecretClient
-from azure.identity import DefaultAzureCredential
 
-import secrets as sec
+import config as conf
 
 def retrieveSecret(SecretName):
-    keyVaultName = os.environ[sec.AZURE_KEYVAULT_NAME]
-    KVUri = f"https://{keyVaultName}.vault.azure.net"
+    # Azure Variables
+    azClientID = conf.CLIENT_ID
+    azClientSecret = conf.CLIENT_SECRET
+    azTenantID = conf.TENANT_ID
+    azKeyVaultName = conf.KEYVAULT_NAME
+    azKVURI = conf.KEYVAULT_URI
 
-    credential = DefaultAzureCredential()
-    client = SecretClient(vault_url=KVUri, credential=credential)
+    _credential = ClientSecretCredential(
+        client_id = azClientID,
+        client_secret = azClientSecret,
+        tenant_id = azTenantID
+    )
 
-    print(f"Retrieving your Zoom password from {keyVaultName}.")
+    _sc = SecretClient(vault_url=azKVURI, credential = _credential)
 
-    retrieved_secret = client.get_secret(SecretName)
+    print(f"Retrieving your Zoom password from {azKeyVaultName}.")
+
+    retrieved_secret = _sc.get_secret(SecretName)
 
     secret = retrieved_secret.value
 
