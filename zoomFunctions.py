@@ -4,7 +4,6 @@ import time as t
 
 import config as conf
 import keyvault as kv
-import additionalFunctions as af
 
 def StartZoom():
     os.startfile(conf.startfile)

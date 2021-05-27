@@ -6,9 +6,9 @@ import sys
 ###########################################
 def ConfirmLogin():
     loginStatus = ""
-    loopContinue = 1
+    loopContinue = ""
 
-    while loopContinue == 1:
+    while loopContinue == "":
         # Ask if user is logged in
         print("Are you currently logged in?")
         print("1: Yes")
@@ -27,8 +27,8 @@ def ConfirmLogin():
 
             if choice == "3":
                 sys.exit()
-            else:
-                loopContinue == 0
+            elif choice == "2":
+                break
         except ValueError:
                 print("You entered something other than a number. Please try again.")
 

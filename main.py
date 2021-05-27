@@ -1,9 +1,5 @@
-import os
-import subprocess
-import time as t
 import sys
 
-import config as conf
 import additionalFunctions as af
 import zoomFunctions as zf
 
@@ -20,13 +16,15 @@ if loginStatus == "Yes":
     if stayLoggedIn == "Yes":
         print("You're logged into the account you need already. This app will now close.")
         sys.exit()
+        # TODO: Maybe add a part here to let the user join a meeting if they want.
     elif stayLoggedIn == "No":
-        # Logout of Zoom
-        zf.signOut
+        zf.signOut()
         # Allow login to other account
         secretNamePrefix = af.selectAccount()
         zf.signIn(secretNamePrefix)
+        # TODO: Maybe add a part here to let the user join a meeting if they want.
 elif loginStatus == "No":
     secretNamePrefix = af.selectAccount()
     zf.signInButton()
     zf.signIn(secretNamePrefix)
+    # TODO: Maybe add a part here to let the user join a meeting if they want.
