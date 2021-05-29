@@ -1,14 +1,25 @@
 import json
 import sys
+import pyautogui
+import time as t
+
+import config as conf
 
 ###########################################
 # Check if user logged in
 ###########################################
 def ConfirmLogin():
     loginStatus = ""
-    loopContinue = ""
 
-    while loopContinue == "":
+    try:
+        # Click the Sign In button
+        pyautogui.moveTo(conf.signinBtn)
+        pyautogui.click()
+        t.sleep(1)
+    except:
+        print("It appears you may already be logged in.")
+    
+    while True:
         # Ask if user is logged in
         print("Are you currently logged in?")
         print("1: Yes")
@@ -16,23 +27,23 @@ def ConfirmLogin():
         print("3: Exit Program")
         choice = input("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
         
-        switcher = {
-            "1": "Yes",
-            "2": "No",
-            "3": "Exit"
-        }
-        
         try:
             val = int(choice) # Just checks to make sure the user entered a number
 
             if choice == "3":
                 sys.exit()
             elif choice == "2":
+                loginStatus = "No"
                 break
+            elif choice == "1":
+                loginStatus == "Yes"
+                break
+            else:
+                print("You entered an invalid number. Please try again.")
+                continue
         except ValueError:
                 print("You entered something other than a number. Please try again.")
 
-    loginStatus == switcher.get(choice, "Invalid number entered.")
     return loginStatus
 
 ###########################################
@@ -40,9 +51,9 @@ def ConfirmLogin():
 ###########################################
 def stayLoggedInCheck():
     stayLoggedIn = ""
-    loopContinue = 1
+    choice = ""
 
-    while loopContinue == 1:
+    while True:
         # Ask if user is logged in
         print("Do you wish to remain logged in to the current account?")
         print("1: Yes")
@@ -65,7 +76,7 @@ def stayLoggedInCheck():
             elif choice == "3":
                 sys.exit()
             else:
-                loopContinue == 0
+                break
         except ValueError:
                 print("You entered something other than a number. Please try again.")
 
@@ -78,7 +89,7 @@ def stayLoggedInCheck():
 def selectAccount():
     accountList = []
     secretNamePrefix = ""
-    loopContinue = 1
+    choice = ""
     
     print("Started reading account list")
     
@@ -92,7 +103,7 @@ def selectAccount():
         print(account["id"] + " - " + account["AccountNickname"] + " - " + account["AccountEmail"])
 
 
-    while loopContinue == 1:
+    while True:
         choice = input("Type the Number that corresponds with the account you wish to login with and press enter:")
 
         try:
@@ -102,13 +113,15 @@ def selectAccount():
             if val in accountList.values():
                 for account in accountList:
                     if choice == account["id"]:
-                        loopContinue = 0
+                        secretNamePrefix = account["SecretName"]
+                        break
                     elif choice != account["id"]:
                         continue
             else:
                 print('Your choice was not in the list. Please try again.')
+                continue
         except ValueError:
             print("You entered something other than a number. Please try again.")
+            continue
     
-    secretNamePrefix = account["SecretName"]
     return secretNamePrefix
