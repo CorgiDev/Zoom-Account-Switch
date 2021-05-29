@@ -1,5 +1,9 @@
 import json
 import sys
+import pyautogui
+import time as t
+
+import config as conf
 
 ###########################################
 # Check if user logged in
@@ -7,6 +11,14 @@ import sys
 def ConfirmLogin():
     loginStatus = ""
 
+    try:
+        # Click the Sign In button
+        pyautogui.moveTo(conf.signinBtn)
+        pyautogui.click()
+        t.sleep(1)
+    except:
+        print("It appears you may already be logged in.")
+    
     while True:
         # Ask if user is logged in
         print("Are you currently logged in?")
@@ -15,23 +27,23 @@ def ConfirmLogin():
         print("3: Exit Program")
         choice = input("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
         
-        switcher = {
-            "1": "Yes",
-            "2": "No",
-            "3": "Exit"
-        }
-        
         try:
             val = int(choice) # Just checks to make sure the user entered a number
 
             if choice == "3":
                 sys.exit()
             elif choice == "2":
+                loginStatus = "No"
                 break
+            elif choice == "1":
+                loginStatus == "Yes"
+                break
+            else:
+                print("You entered an invalid number. Please try again.")
+                continue
         except ValueError:
                 print("You entered something other than a number. Please try again.")
 
-    loginStatus == switcher.get(choice, "Invalid number entered.")
     return loginStatus
 
 ###########################################
@@ -39,6 +51,7 @@ def ConfirmLogin():
 ###########################################
 def stayLoggedInCheck():
     stayLoggedIn = ""
+    choice = ""
 
     while True:
         # Ask if user is logged in
@@ -76,6 +89,7 @@ def stayLoggedInCheck():
 def selectAccount():
     accountList = []
     secretNamePrefix = ""
+    choice = ""
     
     print("Started reading account list")
     
@@ -99,6 +113,7 @@ def selectAccount():
             if val in accountList.values():
                 for account in accountList:
                     if choice == account["id"]:
+                        secretNamePrefix = account["SecretName"]
                         break
                     elif choice != account["id"]:
                         continue
@@ -109,5 +124,4 @@ def selectAccount():
             print("You entered something other than a number. Please try again.")
             continue
     
-    secretNamePrefix = account["SecretName"]
     return secretNamePrefix
