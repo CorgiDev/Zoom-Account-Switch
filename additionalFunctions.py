@@ -1,42 +1,32 @@
 import json
 import sys
-import pyautogui
-import time as t
-
-import config as conf
 
 ###########################################
 # Check if user logged in
 ###########################################
 def ConfirmLogin():
     loginStatus = ""
-
-    try:
-        # Click the Sign In button
-        pyautogui.moveTo(conf.signinBtn)
-        pyautogui.click()
-        t.sleep(1)
-    except:
-        print("It appears you may already be logged in.")
     
     while True:
+        # TODO: Find a way to automate checking if user is logged in or not.
         # Ask if user is logged in
         print("Are you currently logged in?")
         print("1: Yes")
         print("2: No")
         print("3: Exit Program")
-        choice = input("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
+        response = input("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
         
         try:
-            val = int(choice) # Just checks to make sure the user entered a number
+            val = int(response) # Just checks to make sure the user entered a number
 
-            if choice == "3":
+            if response == "3":
+                print("You don't need me then. I am going back to bed. Bye.")
                 sys.exit()
-            elif choice == "2":
+            elif response == "2":
                 loginStatus = "No"
                 break
-            elif choice == "1":
-                loginStatus == "Yes"
+            elif response == "1":
+                loginStatus = "Yes"
                 break
             else:
                 print("You entered an invalid number. Please try again.")
@@ -51,7 +41,6 @@ def ConfirmLogin():
 ###########################################
 def stayLoggedInCheck():
     stayLoggedIn = ""
-    choice = ""
 
     while True:
         # Ask if user is logged in
@@ -59,28 +48,23 @@ def stayLoggedInCheck():
         print("1: Yes")
         print("2: No")
         print("3: Exit Program")
-        choice = input("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
-
-        switcher = {
-            "1": "Yes",
-            "2": "No",
-            "3": "Exit"
-        }
+        response = input("Type the number that corresponds with whether you are logged in or not, or type 3 to exit. Then press the Enter key to continue.")
 
         try:
-            val = int(choice) # Just checks to make sure the user entered a number
+            val = int(response) # Just checks to make sure the user entered a number
 
-            if choice == "1":
-                print("Logged into account you need already. This app will now close.")
+            if response == "3":
+                print("You don't need me then. I am going back to bed. Bye.")
                 sys.exit()
-            elif choice == "3":
-                sys.exit()
-            else:
+            elif response == "2":
+                stayLoggedIn = "No"
+                break
+            elif response == "1":
+                stayLoggedIn = "Yes"
                 break
         except ValueError:
                 print("You entered something other than a number. Please try again.")
 
-    stayLoggedIn == switcher.get(choice, "Invalid number entered.")
     return stayLoggedIn
 
 ###########################################
@@ -89,7 +73,7 @@ def stayLoggedInCheck():
 def selectAccount():
     accountList = []
     secretNamePrefix = ""
-    choice = ""
+    response = ""
     
     print("Started reading account list")
     
@@ -104,21 +88,21 @@ def selectAccount():
 
 
     while True:
-        choice = input("Type the Number that corresponds with the account you wish to login with and press enter:")
+        response = input("Type the Number that corresponds with the account you wish to login with and press enter:")
 
         try:
-            val = int(choice) # Just checks to make sure the user entered a number
+            val = int(response) # Just checks to make sure the user entered a number
             
-            # Checks if choice is actually in the account list
+            # Checks if response is actually in the account list
             if val in accountList.values():
                 for account in accountList:
-                    if choice == account["id"]:
+                    if response == account["id"]:
                         secretNamePrefix = account["SecretName"]
                         break
-                    elif choice != account["id"]:
+                    elif response != account["id"]:
                         continue
             else:
-                print('Your choice was not in the list. Please try again.')
+                print('Your response was not in the list. Please try again.')
                 continue
         except ValueError:
             print("You entered something other than a number. Please try again.")

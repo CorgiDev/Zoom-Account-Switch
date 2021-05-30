@@ -14,7 +14,7 @@ loginStatus = af.ConfirmLogin()
 if loginStatus == "Yes":
     stayLoggedIn = af.stayLoggedInCheck()
     if stayLoggedIn == "Yes":
-        print("You're logged into the account you need already. This app will now close.")
+        print("You don't need me then. I am going back to bed. Bye.")
         sys.exit()
         # TODO: Maybe add a part here to let the user join a meeting if they want.
     elif stayLoggedIn == "No":
